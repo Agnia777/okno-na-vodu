@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2E4749">
+<title>Окно на воду - кафе на канале Грибоедова</title>
+<meta name="description" content="Кафе «Окно на воду» на канале Грибоедова в Санкт-Петербурге: кофе, пышки, чай с вареньем и столик у окна с видом на воду. Концепт сайта.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Окно на воду",
+  "description": "Кафе на канале Грибоедова: кофе, пышки, чай с вареньем, горячая еда и столик у окна с видом на воду.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "набережная канала Грибоедова, 57",
+    "addressLocality": "Санкт-Петербург",
+    "addressCountry": "RU"
+  },
+  "telephone": "+7 000 000-00-00",
+  "openingHours": "Mo-Su 09:00-22:00",
+  "servesCuisine": "Кофе, выпечка, горячие блюда"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Во сколько вы открываетесь?", "acceptedAnswer": {"@type": "Answer", "text": "Ежедневно с 9:00 до 22:00. Завтраки подаём с 9:00 до 12:00."}},
+    {"@type": "Question", "name": "Можно ли забронировать столик у окна?", "acceptedAnswer": {"@type": "Answer", "text": "Да, оставьте заявку на сайте или позвоните. Столики у окна ограничены, поэтому лучше заранее, особенно на вечер и выходные."}},
+    {"@type": "Question", "name": "Можно ли прийти с ребёнком или с собакой?", "acceptedAnswer": {"@type": "Answer", "text": "С ребёнком можно, есть детские стульчики. С собаками можно на веранде, пока она работает, с мая по сентябрь."}},
+    {"@type": "Question", "name": "Работает ли веранда зимой?", "acceptedAnswer": {"@type": "Answer", "text": "Нет, веранда у воды работает с мая по сентябрь. Зимой все столики внутри, у окон."}},
+    {"@type": "Question", "name": "Есть ли wi-fi и розетки?", "acceptedAnswer": {"@type": "Answer", "text": "Wi-fi бесплатный. Розетки у столиков у окна."}},
+    {"@type": "Question", "name": "Есть ли блюда без молока и без глютена?", "acceptedAnswer": {"@type": "Answer", "text": "Напитки можно приготовить на овсяном или миндальном молоке. Безглютеновых блюд сейчас нет. Подскажем на кассе, что подойдёт."}},
+    {"@type": "Question", "name": "Можно ли платить картой?", "acceptedAnswer": {"@type": "Answer", "text": "Да, картой и наличными."}},
+    {"@type": "Question", "name": "Как к вам добраться?", "acceptedAnswer": {"@type": "Answer", "text": "Мы на набережной канала Грибоедова, рядом с мостом. Подробности в блоке «Как нас найти»."}}
+  ]
+}
+</script>
+<style>
+:root {
+  --sky: #ECE8F0;
+  --paper: #F8F6FA;
+  --water: #2E4749;
+  --water-deep: #233739;
+  --granite: #9AA0A3;
+  --ochre: #D3A04C;
+  --lamp: #E8C17A;
+  --iron: #1E2628;
+  --muted: #4D5A5D;
+  --head: Constantia, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --body: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --gut: clamp(20px, 5vw, 48px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 16px; }
+body { margin: 0; background: var(--sky); color: var(--iron); font: 400 18px/1.65 var(--body); overflow-x: hidden; }
+img, svg { max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: 2px; }
+.wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 var(--gut); }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--iron); color: var(--sky); padding: 10px 16px; z-index: 20; }
+.skip:focus { left: 8px; top: 8px; }
+
+h1, h2, h3 { font-family: var(--head); font-weight: 700; margin: 0; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1.02; letter-spacing: -.012em; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.1rem); line-height: 1.08; letter-spacing: -.008em; margin-bottom: 24px; text-wrap: balance; }
+h3 { font-size: 1.5rem; line-height: 1.2; }
+p { margin: 0 0 14px; }
+.lede { font-size: 1.2rem; line-height: 1.6; max-width: 34em; }
+.small { font-size: 16px; line-height: 1.5; color: var(--muted); }
+
+/* Полоска макета */
+.strip { background: var(--iron); color: var(--sky); text-align: center; font-size: 15px; line-height: 1.4; padding: 8px var(--gut); }
+
+/* Шапка */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; }
+.logo { display: inline-flex; align-items: center; gap: 10px; font: 700 1.45rem/1 var(--head); text-decoration: none; letter-spacing: -.005em; }
+.logo svg { width: 22px; height: 28px; flex: none; }
+.nav { display: flex; align-items: center; gap: clamp(16px, 3vw, 34px); }
+.nav a { text-decoration: none; font-size: 17px; }
+.nav a:not(.btn):hover { text-decoration: underline; text-underline-offset: 5px; }
+
+/* Кнопки */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 26px; border: 2px solid var(--iron); border-radius: 4px; background: transparent; color: inherit; font: 600 1.02rem/1.1 var(--body); text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s; }
+.btn--main { background: var(--ochre); border-color: var(--ochre); color: var(--iron); }
+.btn--main:hover { background: #E1B568; border-color: #E1B568; }
+.btn--line:hover { background: var(--iron); color: var(--sky); }
+.nav .btn { min-height: 44px; padding: 0 18px; font-size: 16px; }
+
+/* Первый экран */
+.hero { padding: clamp(20px, 4vw, 48px) 0 clamp(56px, 8vw, 104px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); grid-template-areas: "head win" "act win"; column-gap: clamp(32px, 6vw, 80px); row-gap: 0; align-items: start; }
+.hero-head { grid-area: head; align-self: end; padding-top: 24px; }
+.hero-act { grid-area: act; align-self: start; }
+.hero-win { grid-area: win; }
+.hero h1 { margin-bottom: 22px; }
+.hero .lede { margin-bottom: 30px; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 26px; }
+
+/* Окно */
+.view { position: relative; width: 100%; max-width: 540px; justify-self: end; }
+.scene { --dim: 0; --lit: 0; --stars: 0; --moon: 0; --sun: 0; --shim: .4;
+  position: relative; aspect-ratio: 6 / 7; border: 12px solid var(--iron); border-radius: 50% 50% 0 0 / 30% 30% 0 0; overflow: hidden; background: #9fb8c0; }
+.scene[data-time="morning"] { --dim: .10; --lit: .2; --sun: .85; --shim: .4; }
+.scene[data-time="day"] { --dim: 0; --lit: 0; --shim: .4; }
+.scene[data-time="evening"] { --dim: .36; --lit: .9; --shim: .18; }
+.scene[data-time="night"] { --dim: .62; --lit: 1; --stars: .9; --moon: 1; --shim: .12; }
+.scene[data-time="white"] { --dim: .2; --lit: .45; --shim: .3; }
+.sky { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; }
+.sky-m { background: linear-gradient(to bottom, #B3C0C7 0, #EADFD0 57.14%, #8FA6A6 57.14%, #4F6A6C 100%); }
+.sky-d { background: linear-gradient(to bottom, #8FBBD4 0, #DDEAF0 57.14%, #5F8F95 57.14%, #2F575B 100%); }
+.sky-e { background: linear-gradient(to bottom, #34406B 0, #E8A367 57.14%, #5A5666 57.14%, #1E2830 100%); }
+.sky-n { background: linear-gradient(to bottom, #0D162B 0, #263A5E 57.14%, #1A2A36 57.14%, #0B151B 100%); }
+.sky-w { background: linear-gradient(to bottom, #CFC9E0 0, #F2E6E4 57.14%, #8D91AA 57.14%, #566178 100%); }
+.scene[data-time="morning"] .sky-m, .scene[data-time="day"] .sky-d, .scene[data-time="evening"] .sky-e,
+.scene[data-time="night"] .sky-n, .scene[data-time="white"] .sky-w { opacity: 1; }
+.scene > svg.pic { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.dim { opacity: var(--dim); transition: opacity 1.2s ease; }
+.lit { opacity: calc(var(--lit) * var(--k, 1)); transition: opacity 1.2s ease; }
+.star { opacity: var(--stars); transition: opacity 1.2s ease; }
+.moon { opacity: var(--moon); transition: opacity 1.2s ease; }
+.sun { opacity: var(--sun); transition: opacity 1.2s ease; }
+.shim { opacity: var(--shim); transition: opacity 1.2s ease; animation: drift 7s ease-in-out infinite alternate; }
+.shim:nth-child(2n) { animation-duration: 9s; animation-direction: alternate-reverse; }
+.boat { animation: sail 120s linear infinite; animation-delay: -46s; }
+@keyframes drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
+@keyframes sail { from { transform: translate(-100px, 428px); } to { transform: translate(660px, 428px); } }
+.mull { position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(var(--iron), var(--iron)) 50% 0 / 6px 100% no-repeat,
+    linear-gradient(var(--iron), var(--iron)) 0 38% / 100% 6px no-repeat,
+    linear-gradient(var(--iron), var(--iron)) 0 70% / 100% 6px no-repeat; }
+.scene::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,.15) 0, rgba(255,255,255,0) 38%); }
+.fog { position: absolute; inset: 0; background: var(--sky); opacity: 0; pointer-events: none; animation: clear 2.4s ease-out both; }
+.still .fog { animation: none; }
+@keyframes clear { from { opacity: .92; } to { opacity: 0; } }
+.sill { position: relative; height: 22px; margin: -2px -16px 0; background: linear-gradient(#B3B8BA, #8A9195); border-radius: 2px; box-shadow: 0 6px 14px rgba(30,38,40,.22); }
+.cup { position: absolute; left: 9%; bottom: 14px; width: 24%; max-width: 124px; height: auto; filter: drop-shadow(0 4px 3px rgba(0,0,0,.25)); }
+
+.dial { margin-top: 22px; }
+.times { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 0; border: 0; }
+.times button { min-height: 44px; padding: 0 18px; border: 2px solid var(--iron); border-radius: 4px; background: transparent; color: var(--iron); font: 600 16px/1 var(--body); cursor: pointer; transition: background-color .2s, color .2s; }
+.times button:hover { background: rgba(30,38,40,.08); }
+.times button[aria-pressed="true"] { background: var(--iron); color: var(--sky); }
+.cap { font-family: var(--head); font-size: 1.25rem; line-height: 1.35; margin: 0 0 4px; min-height: 2.7em; }
+.cap-note { font-size: 15px; color: var(--muted); margin: 0; }
+.cap-note button { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* Разделы */
+.sec { padding: clamp(64px, 9vw, 112px) 0; }
+.sec--dark { background: var(--water); color: var(--sky); }
+.sec--dark .small { color: rgba(236,232,240,.8); }
+.split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+
+/* Меню */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 0 0 28px; padding: 0; border-bottom: 1px solid rgba(236,232,240,.28); }
+.tabs button { background: none; border: 0; border-bottom: 4px solid transparent; margin-bottom: -1px; padding: 8px 0 10px; color: rgba(236,232,240,.82); font: 600 1.1rem/1.2 var(--body); cursor: pointer; }
+.tabs button:hover { color: var(--sky); }
+.tabs button[aria-selected="true"] { color: var(--sky); border-bottom-color: var(--lamp); }
+.list { list-style: none; margin: 0; padding: 0; max-width: 720px; }
+.list li { display: flex; align-items: baseline; padding: 9px 0; }
+.list .n { font-size: 1.1rem; }
+.list .dots { flex: 1; min-width: 16px; margin: 0 10px; border-bottom: 2px dotted rgba(236,232,240,.42); transform: translateY(-4px); }
+.list .p { font-weight: 600; color: var(--lamp); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 1.1rem; }
+.menu-aside p { margin-bottom: 12px; }
+.menu-aside h3 { margin-bottom: 12px; }
+
+/* Атмосфера */
+.atm { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
+.photo { margin: 30px 0 0; aspect-ratio: 4 / 3; border-radius: 50% 50% 4px 4px / 34% 34% 4px 4px; overflow: hidden; background: var(--water); }
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.facts { margin: 0; }
+.facts div { padding: 20px 0; border-top: 1px solid var(--granite); }
+.facts div:first-child { border-top: 0; padding-top: 4px; }
+.facts dt { font: 700 1.6rem/1.2 var(--head); margin-bottom: 6px; }
+.facts dd { margin: 0; color: var(--muted); max-width: 30em; }
+
+/* Питерское */
+.rows { margin: 0; }
+.rows div { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 12px clamp(24px, 5vw, 72px); padding: 26px 0; border-top: 1px solid rgba(236,232,240,.28); }
+.rows div:last-child { border-bottom: 1px solid rgba(236,232,240,.28); }
+.rows dt { font: 700 clamp(1.7rem, 3.4vw, 2.4rem)/1.1 var(--head); color: var(--lamp); }
+.rows dd { margin: 0; font-size: 1.1rem; max-width: 32em; }
+
+/* Адрес */
+.where { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.info { margin: 0 0 28px; }
+.info div { padding: 14px 0; border-top: 1px solid var(--granite); }
+.info div:last-child { border-bottom: 1px solid var(--granite); }
+.info dt { font-size: 15px; color: var(--muted); }
+.info dd { margin: 2px 0 0; font-size: 1.15rem; }
+.map { width: 100%; height: auto; display: block; border: 2px solid var(--iron); border-radius: 4px; }
+
+/* Бронь */
+.book { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+form { background: var(--paper); color: var(--iron); border: 2px solid var(--iron); border-radius: 4px; padding: clamp(20px, 4vw, 36px); }
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field, fieldset.seg { margin: 0; padding: 0; border: 0; min-width: 0; }
+.full { grid-column: 1 / -1; }
+label.lab, legend { display: block; font-weight: 600; font-size: 16px; margin-bottom: 6px; padding: 0; }
+input[type="text"], input[type="tel"], input[type="date"], input[type="time"], textarea { width: 100%; min-height: 52px; padding: 10px 14px; border: 2px solid var(--granite); border-radius: 4px; background: #fff; color: var(--iron); font: 400 1.05rem/1.4 var(--body); }
+textarea { min-height: 96px; resize: vertical; }
+input:focus-visible, textarea:focus-visible { outline: 3px solid var(--water); outline-offset: 2px; border-color: var(--iron); }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pills label { position: relative; }
+.pills input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.pills span { display: inline-flex; align-items: center; min-height: 48px; padding: 0 18px; border: 2px solid var(--granite); border-radius: 4px; background: #fff; font-size: 16px; }
+.pills input:checked + span { border-color: var(--iron); background: var(--iron); color: var(--sky); }
+.pills input:focus-visible + span { outline: 3px solid var(--water); outline-offset: 2px; }
+.agree { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.5; }
+.agree input { width: 22px; height: 22px; margin: 2px 0 0; flex: none; accent-color: var(--iron); }
+form .btn { width: 100%; margin-top: 4px; }
+.formnote { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
+.book-aside p { margin-bottom: 12px; }
+
+/* Гости */
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px clamp(32px, 6vw, 80px); margin: 0; }
+.quotes blockquote { margin: 0; padding-top: 18px; border-top: 3px solid var(--ochre); }
+.quotes blockquote p { margin-bottom: 12px; font-family: var(--head); font-size: 1.3rem; line-height: 1.5; }
+.quotes blockquote:first-child p { font-size: 1.55rem; }
+.quotes cite { font-style: normal; font-weight: 600; font-size: 16px; color: var(--muted); }
+.quotes blockquote:nth-child(even) { margin-top: 36px; }
+
+/* Вопросы */
+.faq { max-width: 820px; }
+.faq details { border-top: 1px solid var(--granite); }
+.faq details:last-child { border-bottom: 1px solid var(--granite); }
+.faq summary { list-style: none; cursor: pointer; padding: 20px 44px 20px 0; font: 700 1.3rem/1.3 var(--head); position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font: 400 2rem/1 var(--body); transition: transform .2s; }
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq details p { padding: 0 44px 22px 0; margin: 0; color: var(--muted); max-width: 40em; }
+
+/* Подвал */
+footer { background: var(--water-deep); color: var(--sky); padding: 48px 0 40px; }
+footer p { margin: 0 0 8px; font-size: 16px; line-height: 1.55; }
+footer .sign { font-weight: 600; margin-top: 14px; }
+footer a { text-underline-offset: 3px; }
+
+@media (max-width: 820px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "win" "act"; row-gap: 28px; }
+  .hero-head { padding-top: 0; }
+  .hero .lede { margin-bottom: 0; }
+  .split, .atm, .where, .book { grid-template-columns: minmax(0, 1fr); }
+  .view { justify-self: center; max-width: 440px; }
+  .nav a:not(.btn) { display: none; }
+  .actions .btn { width: 100%; }
+  .rows div { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 22px 0; }
+  .fields { grid-template-columns: minmax(0, 1fr); }
+  .quotes { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .quotes blockquote:nth-child(even) { margin-top: 0; }
+  .photo { max-width: 420px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fog, .shim, .boat { animation: none; }
+  .sky, .dim, .lit, .star, .moon, .sun, .shim { transition: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#menu">Перейти к меню</a>
+<div class="strip">Макет для просмотра. Форма пока не работает.</div>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#top" aria-label="Окно на воду, в начало страницы">
+      <svg viewBox="0 0 22 28" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M2 27V11C2 5 6 1.5 11 1.5S20 5 20 11v16Z"/><path d="M11 2v25M2 15h18"/></svg>
+      Окно на воду
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#menu">Меню</a>
+      <a href="#atmosfera">Атмосфера</a>
+      <a href="#adres">Как найти</a>
+      <a href="#voprosy">Вопросы</a>
+      <a class="btn btn--main" href="#bron">Забронировать</a>
+    </nav>
+  </header>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-head">
+        <h1>Столик у&nbsp;окна над&nbsp;каналом</h1>
+        <p class="lede">Кафе «Окно на воду» на канале Грибоедова в Санкт-Петербурге. Кофе, горячая еда и пышки. Пледы на стульях, а за стеклом вода и мост.</p>
+      </div>
+      <div class="hero-act">
+        <div class="actions">
+          <a class="btn btn--main" href="#menu">Посмотреть меню</a>
+          <a class="btn btn--line" href="#bron">Забронировать столик у окна</a>
+        </div>
+        <p class="small">Набережная канала Грибоедова, 57. Ежедневно с 9:00 до 22:00.</p>
+      </div>
+
+      <div class="hero-win">
+        <div class="view">
+          <div class="scene" id="scene" data-time="day" role="img" aria-label="Окно с видом на канал Грибоедова: фасады на другом берегу, мост и вода. Время суток за окном можно переключать.">
+            <div class="sky sky-m"></div><div class="sky sky-d"></div><div class="sky sky-e"></div><div class="sky sky-n"></div><div class="sky sky-w"></div>
+            <svg class="pic" viewBox="0 0 600 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+              <defs>
+                <radialGradient id="glow"><stop offset="0" stop-color="#FFE2A0" stop-opacity=".95"/><stop offset="1" stop-color="#FFE2A0" stop-opacity="0"/></radialGradient>
+                <linearGradient id="fadeG" gradientUnits="userSpaceOnUse" x1="0" y1="400" x2="0" y2="660"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+                <mask id="fade" maskUnits="userSpaceOnUse" x="0" y="400" width="600" height="300"><rect x="0" y="400" width="600" height="300" fill="url(#fadeG)"/></mask>
+                <filter id="ripple" filterUnits="userSpaceOnUse" x="0" y="400" width="600" height="300">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.003 0.03" numOctaves="1" seed="3" result="n"><animate attributeName="baseFrequency" dur="16s" values="0.003 0.03;0.004 0.04;0.003 0.03" repeatCount="indefinite"/></feTurbulence>
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+                <pattern id="bal" width="10" height="16" patternUnits="userSpaceOnUse"><rect x="4" width="2.4" height="16" fill="#1E2628"/></pattern>
+                <g id="bank"></g>
+              </defs>
+              <g id="stars"></g>
+              <circle class="moon" cx="112" cy="132" r="17" fill="#F4EFD9"/>
+              <circle class="sun" cx="250" cy="196" r="24" fill="#FBEFD0"/>
+              <use href="#bank"/>
+              <g mask="url(#fade)" opacity=".42"><g filter="url(#ripple)"><use href="#bank" transform="translate(0 800) scale(1 -1)"/></g></g>
+              <g id="shim" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round">
+                <path class="shim" d="M70 430h46"/><path class="shim" d="M330 446h60"/><path class="shim" d="M180 478h38"/><path class="shim" d="M450 492h52"/><path class="shim" d="M40 540h64"/><path class="shim" d="M300 566h44"/><path class="shim" d="M500 610h58"/>
+              </g>
+              <g class="boat"><path d="M0 0h62l-9 11H9Z" fill="#1E2628"/><rect x="15" y="-12" width="32" height="12" rx="2" fill="#3D4A4E"/><rect class="lit" x="19" y="-9" width="6" height="6" fill="#F6D58C"/><rect class="lit" x="29" y="-9" width="6" height="6" fill="#F6D58C"/><rect class="lit" x="39" y="-9" width="5" height="6" fill="#F6D58C"/></g>
+            </svg>
+            <div class="fog"></div>
+            <div class="mull"></div>
+          </div>
+          <div class="sill"></div>
+          <svg class="cup" viewBox="0 0 124 84" aria-hidden="true" focusable="false">
+            <ellipse cx="60" cy="72" rx="48" ry="8" fill="#F3F1F4" stroke="#C3C7CB" stroke-width="1.5"/>
+            <path d="M92 38h9c12 0 11 12 8 17-3 5-9 5-17 4" fill="none" stroke="#F8F6FA" stroke-width="6" stroke-linecap="round"/>
+            <path d="M28 30h64v14c0 20-14 26-32 26S28 64 28 44Z" fill="#F8F6FA" stroke="#C3C7CB" stroke-width="1.5"/>
+            <ellipse cx="60" cy="30" rx="32" ry="6.5" fill="#5B3A29"/>
+            <ellipse cx="60" cy="29" rx="22" ry="3.4" fill="#7A5239"/>
+          </svg>
+        </div>
+
+        <div class="dial view" style="justify-self:end">
+          <fieldset class="times" id="times" aria-label="Время суток за окном" style="border:0;padding:0">
+            <button type="button" data-t="morning" aria-pressed="false">Утро</button>
+            <button type="button" data-t="day" aria-pressed="false">День</button>
+            <button type="button" data-t="evening" aria-pressed="false">Вечер</button>
+            <button type="button" data-t="night" aria-pressed="false">Ночь</button>
+          </fieldset>
+          <p class="cap" id="cap" aria-live="polite">День на канале. По набережной идут, по воде плывут.</p>
+          <p class="cap-note" id="capnote">Показано время на ваших часах.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="menu" aria-labelledby="h-menu">
+    <div class="wrap split">
+      <div>
+        <h2 id="h-menu">Меню</h2>
+        <div class="tabs" role="tablist" aria-label="Разделы меню">
+          <button type="button" role="tab" id="tab-coffee" aria-controls="p-coffee" aria-selected="true">Кофе и чай</button>
+          <button type="button" role="tab" id="tab-sweet" aria-controls="p-sweet" aria-selected="false" tabindex="-1">Сладкое</button>
+          <button type="button" role="tab" id="tab-hot" aria-controls="p-hot" aria-selected="false" tabindex="-1">Горячее</button>
+        </div>
+
+        <div role="tabpanel" id="p-coffee" aria-labelledby="tab-coffee">
+          <ul class="list">
+            <li><span class="n">Эспрессо</span><i class="dots"></i><span class="p">170</span></li>
+            <li><span class="n">Американо</span><i class="dots"></i><span class="p">190</span></li>
+            <li><span class="n">Фильтр-кофе</span><i class="dots"></i><span class="p">230</span></li>
+            <li><span class="n">Капучино</span><i class="dots"></i><span class="p">260</span></li>
+            <li><span class="n">Флэт уайт</span><i class="dots"></i><span class="p">280</span></li>
+            <li><span class="n">Раф</span><i class="dots"></i><span class="p">330</span></li>
+            <li><span class="n">Какао</span><i class="dots"></i><span class="p">270</span></li>
+            <li><span class="n">Овсяное или миндальное молоко</span><i class="dots"></i><span class="p">+40</span></li>
+            <li><span class="n">Чай в чайнике: чёрный, зелёный, травяной</span><i class="dots"></i><span class="p">320</span></li>
+            <li><span class="n">Чай с вареньем: малина или брусника</span><i class="dots"></i><span class="p">350</span></li>
+            <li><span class="n">Облепиховый чай</span><i class="dots"></i><span class="p">340</span></li>
+            <li><span class="n">Пряный глинтвейн без алкоголя, с октября по март</span><i class="dots"></i><span class="p">380</span></li>
+          </ul>
+        </div>
+
+        <div role="tabpanel" id="p-sweet" aria-labelledby="tab-sweet" hidden>
+          <ul class="list">
+            <li><span class="n">Пышки с сахарной пудрой, 4 штуки</span><i class="dots"></i><span class="p">240</span></li>
+            <li><span class="n">Сырники со сметаной</span><i class="dots"></i><span class="p">380</span></li>
+            <li><span class="n">Шарлотка с яблоками</span><i class="dots"></i><span class="p">260</span></li>
+            <li><span class="n">Медовик</span><i class="dots"></i><span class="p">290</span></li>
+            <li><span class="n">Эклер</span><i class="dots"></i><span class="p">220</span></li>
+            <li><span class="n">Круассан</span><i class="dots"></i><span class="p">210</span></li>
+          </ul>
+        </div>
+
+        <div role="tabpanel" id="p-hot" aria-labelledby="tab-hot" hidden>
+          <ul class="list">
+            <li><span class="n">Овсянка с яблоком и корицей, до 12:00</span><i class="dots"></i><span class="p">290</span></li>
+            <li><span class="n">Яичница из двух яиц с тостом, до 12:00</span><i class="dots"></i><span class="p">350</span></li>
+            <li><span class="n">Суп дня</span><i class="dots"></i><span class="p">390</span></li>
+            <li><span class="n">Сэндвич со слабосолёной сёмгой и творожным сыром</span><i class="dots"></i><span class="p">520</span></li>
+            <li><span class="n">Сэндвич с индейкой, сыром и маринованным огурцом</span><i class="dots"></i><span class="p">450</span></li>
+            <li><span class="n">Салат с запечённой свёклой и козьим сыром</span><i class="dots"></i><span class="p">460</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="menu-aside" aria-label="Пояснения к меню">
+        <h3>Цены</h3>
+        <p>Завтраки подаём с 9:00 до 12:00.</p>
+        <p class="small">Весной добавляем в меню корюшку, цену подскажем на кассе. Состав и аллергены тоже подскажем на кассе. Если вам нужно без молока, глютена или орехов, скажите заранее.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" id="atmosfera" aria-labelledby="h-atm">
+    <div class="wrap atm">
+      <div>
+        <h2 id="h-atm">Здесь не торопят</h2>
+        <p class="lede">Мы устроили кафе в первом этаже старого дома. Окна большие, до самого пола, и почти все столики стоят так, чтобы из-за них было видно воду.</p>
+        <figure class="photo"><img src="img/stolik-u-okna.webp" width="1024" height="1024" loading="lazy" alt="Круглый деревянный столик у окна: чашка кофе, лампа с тёплым светом, на стуле клетчатый плед, за стеклом канал и старые дома"></figure>
+      </div>
+      <dl class="facts">
+        <div><dt>Столики у окна</dt><dd>Их немного. Бронируйте заранее, если хотите сидеть именно там.</dd></div>
+        <div><dt>Пледы</dt><dd>На стульях лежат шерстяные пледы, особенно пригодятся осенью и в сырую погоду.</dd></div>
+        <div><dt>Книги и лампы</dt><dd>На полке у стены книги, которые можно читать на месте. По вечерам на столиках зажигаем лампы.</dd></div>
+        <div><dt>Веранда у воды</dt><dd>С мая по сентябрь выставляем столики на набережную.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" aria-labelledby="h-food">
+    <div class="wrap">
+      <h2 id="h-food">Питерское и вкусное</h2>
+      <dl class="rows">
+        <div><dt>Пышки</dt><dd>Жарим их каждое утро. Подаём тёплыми, с сахарной пудрой, как в старых пышечных.</dd></div>
+        <div><dt>Кофе</dt><dd>Берём зерно у небольшой обжарки и обновляем его каждые две недели. Варим эспрессо, фильтр и молочные напитки.</dd></div>
+        <div><dt>Чай с вареньем</dt><dd>Малиновое и брусничное варим сами. Чай приносим в чайнике, вместе с вареньем в розетке.</dd></div>
+        <div><dt>Суп дня</dt><dd>Каждый день новый. Что сегодня, подскажем на кассе или в Telegram.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" id="adres" aria-labelledby="h-where">
+    <div class="wrap where">
+      <div>
+        <h2 id="h-where">Как нас найти</h2>
+        <p class="lede">Санкт-Петербург, набережная канала Грибоедова, 57. Вход с набережной, рядом с мостом, над дверью вывеска с синим кругом.</p>
+        <dl class="info">
+          <div><dt>Часы работы</dt><dd>Ежедневно с 9:00 до 22:00. Завтраки с 9:00 до 12:00.</dd></div>
+          <div><dt>Как добраться</dt><dd>Семь минут пешком от метро. Рядом можно оставить велосипед.</dd></div>
+          <div><dt>Телефон</dt><dd><a href="tel:+70000000000">+7 000 000-00-00</a></dd></div>
+          <div><dt>Telegram</dt><dd><a href="#">Написать в Telegram</a></dd></div>
+        </dl>
+      </div>
+      <svg class="map" viewBox="0 0 480 360" role="img" aria-label="Схема: канал Грибоедова, мост и кафе на набережной (заглушка вместо карты)">
+        <rect width="480" height="360" fill="#DDD9E3"/>
+        <g stroke="#F8F6FA" stroke-width="10" stroke-linecap="round" fill="none"><path d="M0 60h480M0 300h480M90 0v360M390 0v360"/></g>
+        <g stroke="#F8F6FA" stroke-width="5" fill="none"><path d="M0 120h480M0 240h480M240 0v70M240 290v70"/></g>
+        <path id="mapcanal" d="M-10 220C90 170 150 120 250 150S400 220 490 140" fill="none" stroke="#5E8C93" stroke-width="44" stroke-linecap="round"/>
+        <path d="M-10 220C90 170 150 120 250 150S400 220 490 140" fill="none" stroke="#7FA7AC" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+        <rect x="204" y="106" width="22" height="82" rx="3" fill="#8A9195" transform="rotate(14 215 147)"/>
+        <circle cx="156" cy="108" r="14" fill="#D3A04C" stroke="#1E2628" stroke-width="3"/>
+        <circle cx="156" cy="108" r="4" fill="#1E2628"/>
+        <text x="180" y="100" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#1E2628">Окно на воду</text>
+        <text font-family="Constantia, Georgia, serif" font-size="17" font-style="italic" fill="#fff" dy="5"><textPath href="#mapcanal" startOffset="58%">канал Грибоедова</textPath></text>
+        <text x="18" y="342" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#4D5A5D">Карта: заглушка</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="sec sec--dark" id="bron" aria-labelledby="h-book">
+    <div class="wrap book">
+      <div>
+        <h2 id="h-book">Забронируйте столик у&nbsp;окна</h2>
+        <form onsubmit="event.preventDefault(); alert('Это макет: форма пока не работает.');" novalidate>
+          <div class="fields">
+            <div class="field"><label class="lab" for="f-name">Ваше имя</label><input id="f-name" type="text" autocomplete="given-name"></div>
+            <div class="field"><label class="lab" for="f-tel">Телефон</label><input id="f-tel" type="tel" autocomplete="tel" placeholder="+7"></div>
+            <div class="field"><label class="lab" for="f-date">Дата</label><input id="f-date" type="date"></div>
+            <div class="field"><label class="lab" for="f-time">Время</label><input id="f-time" type="time"></div>
+            <fieldset class="seg full"><legend>Сколько человек</legend>
+              <div class="pills">
+                <label><input type="radio" name="guests" value="1-2" checked><span>1-2</span></label>
+                <label><input type="radio" name="guests" value="3-4"><span>3-4</span></label>
+                <label><input type="radio" name="guests" value="5-6"><span>5-6</span></label>
+                <label><input type="radio" name="guests" value="больше"><span>Больше</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="seg full"><legend>Где сесть</legend>
+              <div class="pills">
+                <label><input type="radio" name="seat" value="окно" checked><span>У окна</span></label>
+                <label><input type="radio" name="seat" value="веранда"><span>На веранде, с мая по сентябрь</span></label>
+                <label><input type="radio" name="seat" value="любое"><span>Где свободно</span></label>
+              </div>
+            </fieldset>
+            <div class="field full"><label class="lab" for="f-note">Комментарий (необязательно)</label><textarea id="f-note"></textarea></div>
+            <label class="agree full"><input type="checkbox" required><span>Согласен на обработку персональных данных. <a href="privacy.html">Политика конфиденциальности</a></span></label>
+          </div>
+          <button class="btn btn--main" type="submit" style="margin-top:22px">Забронировать столик</button>
+          <p class="formnote">Макет: форма ничего не отправляет.</p>
+        </form>
+      </div>
+      <aside class="book-aside" aria-label="Как проходит бронь">
+        <h3>Что будет дальше</h3>
+        <p>Оставьте заявку, мы перезвоним в течение получаса и подтвердим стол. Пока стол за вами, держим его 15 минут.</p>
+        <p>Удобнее позвонить? <a href="tel:+70000000000">+7 000 000-00-00</a>.</p>
+        <p><a href="#">Написать в Telegram</a></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-guests">
+    <div class="wrap">
+      <h2 id="h-guests">Что говорят гости</h2>
+      <div class="quotes">
+        <blockquote><p>«Зашла переждать дождь, а просидела два часа. Плед, чай с малиновым вареньем и вода за окном. Теперь прихожу по воскресеньям».</p><cite>Мария</cite></blockquote>
+        <blockquote><p>«Бронировали столик у окна на годовщину. Подтвердили быстро, стол держали. Вечером на канале зажгли фонари, и все вышло красиво».</p><cite>Антон</cite></blockquote>
+        <blockquote><p>«Люблю, что можно прийти с книгой и никто не торопит. Пышки тёплые, не масляные».</p><cite>Елена</cite></blockquote>
+        <blockquote><p>«Работаю тут по утрам: розетка у окна, фильтр-кофе и тихо. Вид на воду помогает думать».</p><cite>Павел</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="voprosy" aria-labelledby="h-faq" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="h-faq">Частые вопросы</h2>
+      <div class="faq">
+        <details><summary>Во сколько вы открываетесь?</summary><p>Ежедневно с 9:00 до 22:00. Завтраки подаём с 9:00 до 12:00.</p></details>
+        <details><summary>Можно ли забронировать столик у окна?</summary><p>Да, оставьте заявку на сайте или позвоните. Столики у окна ограничены, поэтому лучше заранее, особенно на вечер и выходные.</p></details>
+        <details><summary>Можно ли прийти с ребёнком или с собакой?</summary><p>С ребёнком можно, есть детские стульчики. С собаками можно на веранде, пока она работает, с мая по сентябрь.</p></details>
+        <details><summary>Работает ли веранда зимой?</summary><p>Нет, веранда у воды работает с мая по сентябрь. Зимой все столики внутри, у окон.</p></details>
+        <details><summary>Есть ли wi-fi и розетки?</summary><p>Wi-fi бесплатный. Розетки у столиков у окна.</p></details>
+        <details><summary>Есть ли блюда без молока и без глютена?</summary><p>Напитки можно приготовить на овсяном или миндальном молоке. Безглютеновых блюд сейчас нет. Подскажем на кассе, что подойдёт.</p></details>
+        <details><summary>Можно ли платить картой?</summary><p>Да, картой и наличными.</p></details>
+        <details><summary>Как к вам добраться?</summary><p>Мы на набережной канала Грибоедова, рядом с мостом. Подробности в блоке «Как нас найти».</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Кафе «Окно на воду», Санкт-Петербург, набережная канала Грибоедова, 57. Ежедневно с 9:00 до 22:00.</p>
+    <p><a href="privacy.html">Политика конфиденциальности</a></p>
+    <p class="sign">Концепт сайта. Кафейня вымышленная, адрес и цены условные.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var params = new URLSearchParams(location.search);
+  var still = params.has('t') || params.has('still');
+  if (still) document.getElementById('scene').parentNode.classList.add('still');
+
+  /* ---------- Рисуем берег напротив ---------- */
+  var seed = 7;
+  function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
+  function mk(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var bank = document.getElementById('bank');
+  var gBase = mk('g', {}, bank);
+  var gDim = document.createElementNS(NS, 'g'); gDim.setAttribute('class', 'dim');
+  var gLit = document.createElementNS(NS, 'g');
+  var gLamp = document.createElementNS(NS, 'g');
+  var DIM = '#0C1626';
+  function dimOf(shape) { var c = shape.cloneNode(true); c.setAttribute('fill', DIM); gDim.appendChild(c); }
+
+  var HORIZON = 400;
+  var houses = [
+    { x: -10, w: 112, h: 178, c: '#C9A25A' },
+    { x: 102, w: 92, h: 226, c: '#A5483C' },
+    { x: 194, w: 118, h: 196, c: '#A7B5A6' },
+    { x: 312, w: 84, h: 262, c: '#E1D2A6', spire: true },
+    { x: 396, w: 112, h: 186, c: '#8E9CA8' },
+    { x: 508, w: 100, h: 214, c: '#BC8F82' }
+  ];
+  houses.forEach(function (b) {
+    var top = HORIZON - b.h;
+    var body = mk('rect', { x: b.x, y: top, width: b.w, height: b.h, fill: b.c }, gBase);
+    dimOf(body);
+    var cornice = mk('rect', { x: b.x - 2, y: top - 5, width: b.w + 4, height: 7, fill: b.c }, gBase);
+    dimOf(cornice);
+    mk('rect', { x: b.x - 2, y: top + 2, width: b.w + 4, height: 2, fill: '#fff', opacity: '.25' }, gBase);
+    if (b.spire) {
+      var cx = b.x + b.w / 2;
+      var sp = mk('path', { d: 'M' + (cx - 7) + ' ' + top + 'L' + cx + ' ' + (top - 72) + 'L' + (cx + 7) + ' ' + top + 'Z', fill: '#B58A3C' }, gBase);
+      dimOf(sp);
+    }
+    var cols = Math.floor((b.w - 10) / 24);
+    var startX = b.x + (b.w - cols * 24) / 2 + 7;
+    for (var y = top + 24; y + 16 < HORIZON - 14; y += 36) {
+      for (var i = 0; i < cols; i++) {
+        var wx = startX + i * 24;
+        mk('rect', { x: wx, y: y, width: 10, height: 16, fill: 'rgba(20,30,40,.5)' }, gBase);
+        var bridgeOverlap = wx + 10 > 372 && y + 16 > 334;
+        var r = rnd();
+        if (!bridgeOverlap && r < .68) {
+          mk('rect', { class: 'lit', x: wx, y: y, width: 10, height: 16, fill: '#F6D58C', style: '--k:' + (r < .5 ? 1 : .55) }, gLit);
+        }
+      }
+    }
+  });
+
+  var quay = mk('rect', { x: 0, y: 392, width: 600, height: 10, fill: '#6F777B' }, gBase); dimOf(quay);
+  mk('rect', { x: 0, y: 392, width: 600, height: 2, fill: '#8A9296' }, gBase);
+  var bridge = mk('path', { d: 'M372 400V352H610V400H574Q497 344 420 400Z', fill: '#7A8186' }, gBase); dimOf(bridge);
+  mk('rect', { x: 372, y: 334, width: 238, height: 3, fill: '#1E2628' }, gBase);
+  mk('rect', { x: 372, y: 337, width: 238, height: 15, fill: 'url(#bal)' }, gBase);
+
+  function lamp(x, yTop, yBase) {
+    mk('rect', { x: x - 1.5, y: yTop, width: 3, height: yBase - yTop, fill: '#1E2628' }, gLamp);
+    mk('circle', { cx: x, cy: yTop - 3, r: 5.5, fill: '#D5DADB' }, gLamp);
+    mk('circle', { class: 'lit', cx: x, cy: yTop - 3, r: 36, fill: 'url(#glow)' }, gLamp);
+    mk('circle', { class: 'lit', cx: x, cy: yTop - 3, r: 5.5, fill: '#FFE2A0' }, gLamp);
+  }
+  lamp(48, 354, 392); lamp(232, 354, 392); lamp(352, 354, 392); lamp(382, 306, 336); lamp(602, 306, 336);
+
+  bank.appendChild(gDim); bank.appendChild(gLit); bank.appendChild(gLamp);
+
+  var gStars = document.getElementById('stars');
+  for (var s = 0; s < 22; s++) {
+    mk('circle', { class: 'star', cx: (rnd() * 600).toFixed(0), cy: (rnd() * 220 + 10).toFixed(0), r: (rnd() * 1 + .7).toFixed(1), fill: '#fff' }, gStars);
+  }
+
+  /* ---------- Время суток за окном ---------- */
+  var scene = document.getElementById('scene');
+  var cap = document.getElementById('cap');
+  var note = document.getElementById('capnote');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('#times button'));
+  var captions = {
+    morning: 'Утро на канале. Над водой ещё тихо.',
+    day: 'День на канале. По набережной идут, по воде плывут.',
+    evening: 'Вечер на канале. Зажгли фонари, на столиках лампы.',
+    night: 'Ночь на канале. В окнах напротив свет.',
+    white: 'Белая ночь на канале. Небо светлое почти до утра.'
+  };
+  function whiteNights(d) { var v = (d.getMonth() + 1) * 100 + d.getDate(); return v >= 525 && v <= 717; }
+  function auto(d) {
+    var h = d.getHours();
+    if (h >= 5 && h < 10) return 'morning';
+    if (h >= 10 && h < 17) return 'day';
+    if (h >= 17 && h < 22) return 'evening';
+    return 'night';
+  }
+  function show(state, manual) {
+    var key = (state === 'night' && whiteNights(new Date())) ? 'white' : state;
+    if (captions[state] && !(state === 'night')) key = state;
+    scene.setAttribute('data-time', key);
+    cap.textContent = captions[key];
+    btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-t') === state)); });
+    note.innerHTML = manual ? 'Вы выбрали время суток. <button type="button" id="reset">Показать время на моих часах</button>' : 'Показано время на ваших часах.';
+    var r = document.getElementById('reset');
+    if (r) r.addEventListener('click', function () { show(auto(new Date()), false); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-t'), true); }); });
+  var forced = params.get('t');
+  if (forced === 'white') { scene.setAttribute('data-time', 'white'); cap.textContent = captions.white; note.textContent = ''; }
+  else if (forced && captions[forced]) show(forced, true);
+  else show(auto(new Date()), false);
+
+  var svgRoot = scene.querySelector('svg.pic');
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches && svgRoot.pauseAnimations) svgRoot.pauseAnimations();
+
+  /* ---------- Вкладки меню ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function pick(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { pick(t); });
+    t.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft') n = tabs[(i + tabs.length - 1) % tabs.length];
+      if (n) { e.preventDefault(); pick(n); n.focus(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
