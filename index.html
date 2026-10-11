@@ -84,6 +84,16 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 16px; }
 body { margin: 0; background: var(--sky); color: var(--iron); font: 400 18px/1.65 var(--body); overflow-x: hidden; }
+
+/* Фон страницы: градиент следует за временем суток в окне. Все цвета светлые, чтобы текст читался */
+.pagebg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+.pagebg i { position: absolute; inset: 0; opacity: 0; transition: opacity 1.8s ease; will-change: opacity; }
+.pagebg .pb-m { background: radial-gradient(ellipse 70% 55% at 90% 6%, rgba(255,214,170,.6), rgba(255,214,170,0) 70%), linear-gradient(170deg, #F6DDE0 0%, #EADCEB 48%, #DCE4F0 100%); }
+.pagebg .pb-d { background: radial-gradient(ellipse 70% 55% at 90% 6%, rgba(255,255,255,.75), rgba(255,255,255,0) 70%), linear-gradient(170deg, #D6EAF5 0%, #E3EEF6 50%, #F1F3F8 100%); }
+.pagebg .pb-e { background: radial-gradient(ellipse 70% 55% at 90% 6%, rgba(255,186,108,.55), rgba(255,186,108,0) 70%), linear-gradient(170deg, #F3D2B2 0%, #E9CFD6 50%, #D6CFE8 100%); }
+.pagebg .pb-n { background: radial-gradient(ellipse 70% 55% at 90% 6%, rgba(255,255,255,.5), rgba(255,255,255,0) 70%), linear-gradient(170deg, #C6CEEA 0%, #D0D2EA 52%, #DAD7EC 100%); }
+body[data-page="morning"] .pb-m, body[data-page="day"] .pb-d, body[data-page="evening"] .pb-e, body[data-page="night"] .pb-n { opacity: 1; }
+body:not([data-page]) .pb-e { opacity: 1; }
 img, svg { max-width: 100%; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: 2px; }
@@ -130,65 +140,29 @@ p { margin: 0 0 14px; }
 .hero .lede { margin-bottom: 30px; }
 .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 26px; }
 
-/* Окно */
-.view { position: relative; width: 100%; max-width: 480px; justify-self: end; }
-.scene { --dim: 0; --lit: 0; --stars: 0; --moon: 0; --sun: 0; --shim: .4;
-  position: relative; aspect-ratio: 6 / 6.6; border: 12px solid var(--iron); border-radius: 50% 50% 0 0 / 30% 30% 0 0; overflow: hidden; background: #9fb8c0; }
-.scene[data-time="morning"] { --dim: .10; --lit: .2; --sun: .85; --shim: .4; }
-.scene[data-time="day"] { --dim: 0; --lit: 0; --shim: .4; }
-.scene[data-time="evening"] { --dim: .36; --lit: .9; --shim: .18; }
-.scene[data-time="night"] { --dim: .62; --lit: 1; --stars: .9; --moon: 1; --shim: .12; }
-.scene[data-time="white"] { --dim: .2; --lit: .45; --shim: .3; }
-.sky { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; }
-.sky-m { background: linear-gradient(to bottom, #B3C0C7 0, #EADFD0 57.14%, #8FA6A6 57.14%, #4F6A6C 100%); }
-.sky-d { background: linear-gradient(to bottom, #8FBBD4 0, #DDEAF0 57.14%, #5F8F95 57.14%, #2F575B 100%); }
-.sky-e { background: linear-gradient(to bottom, #34406B 0, #E8A367 57.14%, #5A5666 57.14%, #1E2830 100%); }
-.sky-n { background: linear-gradient(to bottom, #0D162B 0, #263A5E 57.14%, #1A2A36 57.14%, #0B151B 100%); }
-.sky-w { background: linear-gradient(to bottom, #CFC9E0 0, #F2E6E4 57.14%, #8D91AA 57.14%, #566178 100%); }
-.scene[data-time="morning"] .sky-m, .scene[data-time="day"] .sky-d, .scene[data-time="evening"] .sky-e,
-.scene[data-time="night"] .sky-n, .scene[data-time="white"] .sky-w { opacity: 1; }
-.scene > svg.pic { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.dim { opacity: var(--dim); transition: opacity 1.2s ease; }
-.lit { opacity: calc(var(--lit) * var(--k, 1)); transition: opacity 1.2s ease; }
-.star { opacity: var(--stars); transition: opacity 1.2s ease; }
-.moon { opacity: var(--moon); transition: opacity 1.2s ease; }
-.sun { opacity: var(--sun); transition: opacity 1.2s ease; }
-.shim { opacity: var(--shim); transition: opacity 1.2s ease; animation: drift 7s ease-in-out infinite alternate; }
-.shim:nth-child(2n) { animation-duration: 9s; animation-direction: alternate-reverse; }
-.boat { animation: sail 120s linear infinite; animation-delay: -46s; }
-@keyframes drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
-@keyframes sail { from { transform: translate(-100px, 428px); } to { transform: translate(660px, 428px); } }
-.mull { position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(var(--iron), var(--iron)) 50% 0 / 6px 100% no-repeat,
-    linear-gradient(var(--iron), var(--iron)) 0 38% / 100% 6px no-repeat,
-    linear-gradient(var(--iron), var(--iron)) 0 70% / 100% 6px no-repeat; }
-.scene::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,.15) 0, rgba(255,255,255,0) 38%); }
-.fog { position: absolute; inset: 0; background: var(--sky); opacity: 0; pointer-events: none; animation: clear 2.4s ease-out both; }
-.still .fog { animation: none; }
-@keyframes clear { from { opacity: .92; } to { opacity: 0; } }
-.sill { position: relative; height: 22px; margin: -2px -16px 0; background: linear-gradient(#B3B8BA, #8A9195); border-radius: 2px; box-shadow: 0 6px 14px rgba(30,38,40,.22); }
-.cup { position: absolute; left: 9%; bottom: 14px; width: 24%; max-width: 124px; height: auto; filter: drop-shadow(0 4px 3px rgba(0,0,0,.25)); }
-
-.dial { margin-top: 22px; }
-.times { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; padding: 0; border: 0; }
-.times button { min-height: 44px; padding: 0 18px; border: 2px solid var(--iron); border-radius: 4px; background: transparent; color: var(--iron); font: 600 16px/1 var(--body); cursor: pointer; transition: background-color .2s, color .2s; }
-.times button:hover { background: rgba(30,38,40,.08); }
+/* Фото в арке окна: меняются по времени суток */
+.hero-win { width: 100%; max-width: 500px; justify-self: end; }
+.hero-photo { position: relative; margin: 0; aspect-ratio: 1 / 1.05; border: 12px solid var(--iron); border-radius: 50% 50% 0 0 / 30% 30% 0 0; overflow: hidden; background: var(--water); box-shadow: 0 18px 40px rgba(30,38,40,.22); }
+.hero-photo .ph { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
+.hero-photo .ph.on { opacity: 1; }
+.times { position: absolute; left: 12px; right: 12px; bottom: 14px; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0; padding: 0; border: 0; }
+.times[hidden] { display: none; }
+.times button { min-height: 44px; padding: 0 16px; border: 2px solid var(--iron); border-radius: 4px; background: rgba(248,246,250,.92); color: var(--iron); font: 600 16px/1 var(--body); cursor: pointer; transition: background-color .2s, color .2s; }
+.times button:hover { background: #fff; }
 .times button[aria-pressed="true"] { background: var(--iron); color: var(--sky); }
-@media (min-width: 821px) {
-  .dial .times { position: relative; top: -158px; margin-bottom: -44px; justify-content: center; z-index: 3; }
-  .dial .times button { padding: 0 13px; font-size: 15px; background: rgba(248,246,250,.9); }
-  .dial .times button:hover { background: #fff; }
-  .dial .times button[aria-pressed="true"] { background: var(--iron); }
-}
-.cap { font-family: var(--head); font-size: 1.25rem; line-height: 1.35; margin: 0 0 4px; min-height: 2.7em; }
-.cap-note { font-size: 15px; color: var(--muted); margin: 0; }
+.cap { font-family: var(--head); font-size: 1.25rem; line-height: 1.35; margin: 16px 0 4px; min-height: 2.7em; }
+.cap-note { font-size: 15px; line-height: 1.5; color: var(--muted); margin: 0; min-height: 1.6em; }
 .cap-note button { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* Питерское и вкусное: список и фото */
+.food { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.food-photo { margin: 0; }
+.food-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; object-position: 22% 50%; border-radius: 4px; }
 
 /* Разделы */
 .sec { padding: clamp(64px, 9vw, 112px) 0; }
-.sec--dark { background: var(--water); color: var(--sky); }
-.sec--paper { background: var(--paper); }
+.sec--dark { background: radial-gradient(ellipse 55% 45% at 94% 0%, rgba(232,193,122,.12), rgba(232,193,122,0) 70%), linear-gradient(165deg, var(--water) 0%, var(--water-deep) 100%); color: var(--sky); }
+.sec--paper { background: rgba(248,246,250,.74); }
 .sec--dark .small { color: rgba(236,232,240,.8); }
 .split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
 
@@ -202,6 +176,14 @@ p { margin: 0 0 14px; }
 .list .n { font-size: 1.1rem; }
 .list .dots { flex: 1; min-width: 16px; margin: 0 10px; border-bottom: 2px dotted rgba(236,232,240,.42); transform: translateY(-4px); }
 .list .p { font-weight: 600; color: var(--lamp); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 1.1rem; }
+.list li.has-th { align-items: center; gap: 16px; padding: 10px 0; }
+.list .th { width: 88px; height: 88px; flex: none; border-radius: 4px; object-fit: cover; }
+@media (hover: hover) and (pointer: fine) {
+  .list .th { position: relative; transform-origin: left center; transition: transform .28s ease, box-shadow .28s ease; cursor: zoom-in; }
+  .list .th:hover { z-index: 5; transform: scale(2.5); box-shadow: 0 10px 28px rgba(0,0,0,.45); }
+}
+.list .row { display: flex; align-items: baseline; flex: 1; min-width: 0; }
+@media (max-width: 480px) { .list li.has-th { gap: 12px; } .list .th { width: 64px; height: 64px; } }
 .menu-aside p { margin-bottom: 12px; }
 .menu-aside h3 { margin-bottom: 12px; }
 
@@ -262,7 +244,7 @@ form .btn { width: 100%; margin-top: 4px; }
 .quotes blockquote:first-child { grid-column: 1 / -1; max-width: 880px; padding-left: clamp(18px, 3vw, 32px); border-left: 6px solid var(--ochre); }
 .quotes blockquote:first-child p { font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.4; }
 .quotes cite { font-style: normal; font-weight: 600; font-size: 16px; color: var(--muted); }
-.rail { position: relative; height: 28px; background: var(--paper); }
+.rail { position: relative; height: 28px; background: rgba(248,246,250,.74); }
 .rail::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--water); }
 .rail::after { content: ""; position: absolute; left: 0; right: 0; top: 6px; bottom: 0; background: repeating-linear-gradient(90deg, var(--water) 0 3px, transparent 3px 16px); }
 
@@ -287,7 +269,13 @@ footer a { text-underline-offset: 3px; }
   .hero-head { padding-top: 0; }
   .hero .lede { margin-bottom: 0; }
   .split, .atm, .where, .book { grid-template-columns: minmax(0, 1fr); }
-  .view { justify-self: center; max-width: 440px; }
+  .hero-win { justify-self: center; max-width: 440px; }
+  .cap { min-height: 4.1em; }
+  .cap-note { min-height: 3.2em; }
+  .times { gap: 6px; left: 8px; right: 8px; }
+  .times button { padding: 0 9px; font-size: 14px; }
+  .food { grid-template-columns: minmax(0, 1fr); }
+  .food-photo { max-width: 420px; }
   .nav a:not(.btn) { display: none; }
   .nav a[href="#menu"] { display: inline; }
   .nav { gap: 14px; }
@@ -299,13 +287,12 @@ footer a { text-underline-offset: 3px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .fog, .shim { animation: none; }
-  .boat { animation: none; transform: translate(300px, 428px); }
-  .sky, .dim, .lit, .star, .moon, .sun, .shim { transition: none; }
+  .hero-photo .ph, .pagebg i, .list .th { transition: none; }
 }
 </style>
 </head>
 <body>
+<div class="pagebg" aria-hidden="true"><i class="pb-m"></i><i class="pb-d"></i><i class="pb-e"></i><i class="pb-n"></i></div>
 <a class="skip" href="#menu">Перейти к меню</a>
 <div class="strip">Макет для просмотра. Форма пока не работает.</div>
 
@@ -341,55 +328,21 @@ footer a { text-underline-offset: 3px; }
       </div>
 
       <div class="hero-win">
-        <div class="view">
-          <div class="scene" id="scene" data-time="day" role="img" aria-label="Окно с видом на канал Грибоедова: фасады на другом берегу, мост и вода. Время суток за окном можно переключать.">
-            <div class="sky sky-m"></div><div class="sky sky-d"></div><div class="sky sky-e"></div><div class="sky sky-n"></div><div class="sky sky-w"></div>
-            <svg class="pic" viewBox="0 0 600 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-              <defs>
-                <radialGradient id="glow"><stop offset="0" stop-color="#FFE2A0" stop-opacity=".95"/><stop offset="1" stop-color="#FFE2A0" stop-opacity="0"/></radialGradient>
-                <linearGradient id="fadeG" gradientUnits="userSpaceOnUse" x1="0" y1="400" x2="0" y2="660"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
-                <mask id="fade" maskUnits="userSpaceOnUse" x="0" y="400" width="600" height="300"><rect x="0" y="400" width="600" height="300" fill="url(#fadeG)"/></mask>
-                <filter id="ripple" filterUnits="userSpaceOnUse" x="0" y="400" width="600" height="300">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.003 0.03" numOctaves="1" seed="3" result="n"><animate attributeName="baseFrequency" dur="16s" values="0.003 0.03;0.004 0.04;0.003 0.03" repeatCount="indefinite"/></feTurbulence>
-                  <feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/>
-                </filter>
-                <pattern id="bal" width="10" height="16" patternUnits="userSpaceOnUse"><rect x="4" width="2.4" height="16" fill="#1E2628"/></pattern>
-                <g id="bank"></g>
-              </defs>
-              <g id="stars"></g>
-              <circle class="moon" cx="112" cy="132" r="17" fill="#F4EFD9"/>
-              <circle class="sun" cx="250" cy="196" r="24" fill="#FBEFD0"/>
-              <use href="#bank"/>
-              <g mask="url(#fade)" opacity=".42"><g filter="url(#ripple)"><use href="#bank" transform="translate(0 800) scale(1 -1)"/></g></g>
-              <g id="shim" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round">
-                <path class="shim" d="M70 430h46"/><path class="shim" d="M330 446h60"/><path class="shim" d="M180 478h38"/><path class="shim" d="M450 492h52"/><path class="shim" d="M40 540h64"/><path class="shim" d="M300 566h44"/><path class="shim" d="M500 610h58"/>
-              </g>
-              <g class="boat"><path d="M0 0h62l-9 11H9Z" fill="#1E2628"/><rect x="15" y="-12" width="32" height="12" rx="2" fill="#3D4A4E"/><rect class="lit" x="19" y="-9" width="6" height="6" fill="#F6D58C"/><rect class="lit" x="29" y="-9" width="6" height="6" fill="#F6D58C"/><rect class="lit" x="39" y="-9" width="5" height="6" fill="#F6D58C"/></g>
-            </svg>
-            <div class="fog"></div>
-            <div class="mull"></div>
-          </div>
-          <div class="sill"></div>
-          <svg class="cup" viewBox="0 0 124 84" aria-hidden="true" focusable="false">
-            <ellipse cx="60" cy="72" rx="48" ry="8" fill="#F3F1F4" stroke="#C3C7CB" stroke-width="1.5"/>
-            <path d="M92 38h9c12 0 11 12 8 17-3 5-9 5-17 4" fill="none" stroke="#F8F6FA" stroke-width="6" stroke-linecap="round"/>
-            <path d="M28 30h64v14c0 20-14 26-32 26S28 64 28 44Z" fill="#F8F6FA" stroke="#C3C7CB" stroke-width="1.5"/>
-            <ellipse cx="60" cy="30" rx="32" ry="6.5" fill="#5B3A29"/>
-            <ellipse cx="60" cy="29" rx="22" ry="3.4" fill="#7A5239"/>
-          </svg>
-        </div>
-
-        <div class="dial view" style="justify-self:end">
-          <fieldset class="times" id="times" aria-label="Время суток за окном" style="border:0;padding:0">
+        <figure class="hero-photo" id="heroph">
+          <img class="ph" data-t="morning" data-src="img/okno-utro.webp" width="1024" height="1024" aria-hidden="true" alt="Круглый столик у окна: чашка капучино, лампа, на стуле клетчатый плед, за стеклом канал и жёлтые дома под облачным небом">
+          <img class="ph" data-t="day" data-src="img/okno-den.jpg" width="724" height="764" aria-hidden="true" alt="Столик у окна в солнечный день: чашка капучино, лампа, плед на стуле, за стеклом канал и яркий свет на воде">
+          <img class="ph" data-t="evening" data-src="img/okno-vecher.webp" width="1024" height="1024" aria-hidden="true" alt="Столик у окна на закате: чашка кофе, лампа и сухоцветы на круглом столе, плед на стуле, за стеклом канал с отражением розового неба, мост и зажжённые фонари">
+          <img class="ph" data-t="night" data-src="img/stolik-u-okna.webp" width="1024" height="1024" aria-hidden="true" alt="Круглый деревянный столик у окна ночью: чашка кофе, лампа с тёплым светом, на стуле клетчатый плед, за стеклом тёмный канал">
+          <noscript><img class="ph on" style="opacity:1" src="img/okno-den.jpg" width="724" height="764" alt="Столик у окна в солнечный день: чашка капучино, лампа, плед на стуле, за стеклом канал"></noscript>
+          <fieldset class="times" id="times" aria-label="Время суток за окном" hidden>
             <button type="button" data-t="morning" aria-pressed="false">Утро</button>
             <button type="button" data-t="day" aria-pressed="false">День</button>
             <button type="button" data-t="evening" aria-pressed="false">Вечер</button>
             <button type="button" data-t="night" aria-pressed="false">Ночь</button>
-            <button type="button" data-t="white" aria-pressed="false">Белые ночи</button>
           </fieldset>
-          <p class="cap" id="cap" aria-live="polite">День на канале. По набережной идут, по воде плывут.</p>
-          <p class="cap-note" id="capnote">Показано время на ваших часах.</p>
-        </div>
+        </figure>
+        <p class="cap" id="cap" aria-live="off">Вечер на канале. Зажгли лампы, за окном сумерки.</p>
+        <p class="cap-note" id="capnote">Показано время на ваших часах.</p>
       </div>
     </div>
   </section>
@@ -423,23 +376,23 @@ footer a { text-underline-offset: 3px; }
 
         <div role="tabpanel" id="p-sweet" aria-labelledby="tab-sweet" hidden>
           <ul class="list">
-            <li><span class="n">Пышки с сахарной пудрой, 4 штуки</span><i class="dots"></i><span class="p">240</span></li>
-            <li><span class="n">Сырники со сметаной</span><i class="dots"></i><span class="p">380</span></li>
-            <li><span class="n">Шарлотка с яблоками</span><i class="dots"></i><span class="p">260</span></li>
-            <li><span class="n">Медовик</span><i class="dots"></i><span class="p">290</span></li>
-            <li><span class="n">Эклер</span><i class="dots"></i><span class="p">220</span></li>
-            <li><span class="n">Круассан</span><i class="dots"></i><span class="p">210</span></li>
+            <li class="has-th"><img class="th" src="img/sweet-pyshki.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Пышки с сахарной пудрой, 4 штуки</span><i class="dots"></i><span class="p">240</span></div></li>
+            <li class="has-th"><img class="th" src="img/sweet-syrniki.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Сырники со сметаной</span><i class="dots"></i><span class="p">380</span></div></li>
+            <li class="has-th"><img class="th" src="img/sweet-sharlotka.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Шарлотка с яблоками</span><i class="dots"></i><span class="p">260</span></div></li>
+            <li class="has-th"><img class="th" src="img/sweet-medovik.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Медовик</span><i class="dots"></i><span class="p">290</span></div></li>
+            <li class="has-th"><img class="th" src="img/sweet-ekler.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Эклер</span><i class="dots"></i><span class="p">220</span></div></li>
+            <li class="has-th"><img class="th" src="img/sweet-kruassan.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Круассан</span><i class="dots"></i><span class="p">210</span></div></li>
           </ul>
         </div>
 
         <div role="tabpanel" id="p-hot" aria-labelledby="tab-hot" hidden>
           <ul class="list">
-            <li><span class="n">Овсянка с яблоком и корицей, до 12:00</span><i class="dots"></i><span class="p">290</span></li>
-            <li><span class="n">Яичница из двух яиц с тостом, до 12:00</span><i class="dots"></i><span class="p">350</span></li>
-            <li><span class="n">Суп дня</span><i class="dots"></i><span class="p">390</span></li>
-            <li><span class="n">Сэндвич со слабосолёной сёмгой и творожным сыром</span><i class="dots"></i><span class="p">520</span></li>
-            <li><span class="n">Сэндвич с индейкой, сыром и маринованным огурцом</span><i class="dots"></i><span class="p">450</span></li>
-            <li><span class="n">Салат с запечённой свёклой и козьим сыром</span><i class="dots"></i><span class="p">460</span></li>
+            <li class="has-th"><img class="th" src="img/food-ovsyanka.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Овсянка с яблоком и корицей, до 12:00</span><i class="dots"></i><span class="p">290</span></div></li>
+            <li class="has-th"><img class="th" src="img/food-yaichnitsa.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Яичница из двух яиц с тостом, до 12:00</span><i class="dots"></i><span class="p">350</span></div></li>
+            <li class="has-th"><img class="th" src="img/food-sup.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Суп дня</span><i class="dots"></i><span class="p">390</span></div></li>
+            <li class="has-th"><img class="th" src="img/food-losos.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Тост со слабосолёной сёмгой и творожным сыром</span><i class="dots"></i><span class="p">520</span></div></li>
+            <li class="has-th"><img class="th" src="img/food-indeyka.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Сэндвич с индейкой, сыром и маринованным огурцом</span><i class="dots"></i><span class="p">450</span></div></li>
+            <li class="has-th"><img class="th" src="img/food-salat.jpg" width="240" height="240" loading="lazy" alt=""><div class="row"><span class="n">Салат с запечённой свёклой и козьим сыром</span><i class="dots"></i><span class="p">460</span></div></li>
           </ul>
         </div>
       </div>
@@ -457,7 +410,7 @@ footer a { text-underline-offset: 3px; }
       <div>
         <h2 id="h-atm">Здесь не торопят</h2>
         <p class="lede">Мы устроили кафе в первом этаже старого дома. Окна большие, до самого пола, и воду видно почти из любого места зала.</p>
-        <figure class="photo"><img src="img/stolik-u-okna.webp" width="1024" height="1024" loading="lazy" alt="Круглый деревянный столик у окна: чашка кофе, лампа с тёплым светом, на стуле клетчатый плед, за стеклом канал и старые дома"></figure>
+        <figure class="photo"><img src="img/kofe-s-parom.jpg" width="774" height="774" loading="lazy" alt="Чашка кофе с паром на деревянном столике, в глубине зала другие столики и растения"></figure>
       </div>
       <dl class="facts">
         <div><dt>Столики у окна</dt><dd>Их шесть, прямо у стекла, с видом на воду и мост. Остальные стоят вторым рядом: воду видно, но чуть дальше. Хотите именно у окна, бронируйте заранее.</dd></div>
@@ -483,7 +436,8 @@ footer a { text-underline-offset: 3px; }
   <div class="rail" aria-hidden="true"></div>
 
   <section class="sec sec--dark" aria-labelledby="h-food">
-    <div class="wrap">
+    <div class="wrap food">
+      <div>
       <h2 id="h-food">Питерское и вкусное</h2>
       <dl class="rows">
         <div><dt>Пышки</dt><dd>Жарим их каждое утро. Подаём тёплыми, с сахарной пудрой, как в старых пышечных. Четыре штуки за 240.</dd></div>
@@ -491,6 +445,8 @@ footer a { text-underline-offset: 3px; }
         <div><dt>Чай с вареньем</dt><dd>Малиновое и брусничное варим сами. Чай приносим в чайнике, вместе с вареньем в розетке.</dd></div>
         <div><dt>Суп дня</dt><dd>Каждый день новый. Что сегодня, подскажем на кассе или в Telegram.</dd></div>
       </dl>
+      </div>
+      <figure class="food-photo"><img src="img/pyshki-vecher.jpg" width="1024" height="724" loading="lazy" alt="Тарелка пышек с сахарной пудрой и чашка кофе на столике у окна, за стеклом канал и огни вечернего города"></figure>
     </div>
   </section>
 
@@ -594,98 +550,18 @@ footer a { text-underline-offset: 3px; }
 
 <script>
 (function () {
-  var NS = 'http://www.w3.org/2000/svg';
-  var params = new URLSearchParams(location.search);
-  var still = params.has('t') || params.has('still');
-  if (still) document.getElementById('scene').parentNode.classList.add('still');
-
-  /* ---------- Рисуем берег напротив ---------- */
-  var seed = 7;
-  function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
-  function mk(name, attrs, parent) {
-    var e = document.createElementNS(NS, name);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    if (parent) parent.appendChild(e);
-    return e;
-  }
-  var bank = document.getElementById('bank');
-  var gBase = mk('g', {}, bank);
-  var gDim = document.createElementNS(NS, 'g'); gDim.setAttribute('class', 'dim');
-  var gLit = document.createElementNS(NS, 'g');
-  var gLamp = document.createElementNS(NS, 'g');
-  var DIM = '#0C1626';
-  function dimOf(shape) { var c = shape.cloneNode(true); c.setAttribute('fill', DIM); gDim.appendChild(c); }
-
-  var HORIZON = 400;
-  var houses = [
-    { x: -10, w: 112, h: 178, c: '#C9A25A' },
-    { x: 102, w: 92, h: 226, c: '#A5483C' },
-    { x: 194, w: 118, h: 196, c: '#A7B5A6' },
-    { x: 312, w: 84, h: 262, c: '#E1D2A6', spire: true },
-    { x: 396, w: 112, h: 186, c: '#8E9CA8' },
-    { x: 508, w: 100, h: 214, c: '#BC8F82' }
-  ];
-  houses.forEach(function (b) {
-    var top = HORIZON - b.h;
-    var body = mk('rect', { x: b.x, y: top, width: b.w, height: b.h, fill: b.c }, gBase);
-    dimOf(body);
-    var cornice = mk('rect', { x: b.x - 2, y: top - 5, width: b.w + 4, height: 7, fill: b.c }, gBase);
-    dimOf(cornice);
-    mk('rect', { x: b.x - 2, y: top + 2, width: b.w + 4, height: 2, fill: '#fff', opacity: '.25' }, gBase);
-    if (b.spire) {
-      var cx = b.x + b.w / 2;
-      var sp = mk('path', { d: 'M' + (cx - 7) + ' ' + top + 'L' + cx + ' ' + (top - 72) + 'L' + (cx + 7) + ' ' + top + 'Z', fill: '#B58A3C' }, gBase);
-      dimOf(sp);
-    }
-    var cols = Math.floor((b.w - 10) / 24);
-    var startX = b.x + (b.w - cols * 24) / 2 + 7;
-    for (var y = top + 24; y + 16 < HORIZON - 14; y += 36) {
-      for (var i = 0; i < cols; i++) {
-        var wx = startX + i * 24;
-        mk('rect', { x: wx, y: y, width: 10, height: 16, fill: 'rgba(20,30,40,.5)' }, gBase);
-        var bridgeOverlap = wx + 10 > 372 && y + 16 > 334;
-        var r = rnd();
-        if (!bridgeOverlap && r < .68) {
-          mk('rect', { class: 'lit', x: wx, y: y, width: 10, height: 16, fill: '#F6D58C', style: '--k:' + (r < .5 ? 1 : .55) }, gLit);
-        }
-      }
-    }
-  });
-
-  var quay = mk('rect', { x: 0, y: 392, width: 600, height: 10, fill: '#6F777B' }, gBase); dimOf(quay);
-  mk('rect', { x: 0, y: 392, width: 600, height: 2, fill: '#8A9296' }, gBase);
-  var bridge = mk('path', { d: 'M372 400V352H610V400H574Q497 344 420 400Z', fill: '#7A8186' }, gBase); dimOf(bridge);
-  mk('rect', { x: 372, y: 334, width: 238, height: 3, fill: '#1E2628' }, gBase);
-  mk('rect', { x: 372, y: 337, width: 238, height: 15, fill: 'url(#bal)' }, gBase);
-
-  function lamp(x, yTop, yBase) {
-    mk('rect', { x: x - 1.5, y: yTop, width: 3, height: yBase - yTop, fill: '#1E2628' }, gLamp);
-    mk('circle', { cx: x, cy: yTop - 3, r: 5.5, fill: '#D5DADB' }, gLamp);
-    mk('circle', { class: 'lit', cx: x, cy: yTop - 3, r: 36, fill: 'url(#glow)' }, gLamp);
-    mk('circle', { class: 'lit', cx: x, cy: yTop - 3, r: 5.5, fill: '#FFE2A0' }, gLamp);
-  }
-  lamp(48, 354, 392); lamp(232, 354, 392); lamp(352, 354, 392); lamp(382, 306, 336); lamp(602, 306, 336);
-
-  bank.appendChild(gDim); bank.appendChild(gLit); bank.appendChild(gLamp);
-
-  var gStars = document.getElementById('stars');
-  for (var s = 0; s < 22; s++) {
-    mk('circle', { class: 'star', cx: (rnd() * 600).toFixed(0), cy: (rnd() * 220 + 10).toFixed(0), r: (rnd() * 1 + .7).toFixed(1), fill: '#fff' }, gStars);
-  }
-
-  /* ---------- Время суток за окном ---------- */
-  var scene = document.getElementById('scene');
+  /* ---------- Время суток за окном: фото и фон меняются вместе ---------- */
+  var photos = Array.prototype.slice.call(document.querySelectorAll('#heroph .ph'));
+  var timesBox = document.getElementById('times');
+  var btns = Array.prototype.slice.call(timesBox.querySelectorAll('button'));
   var cap = document.getElementById('cap');
   var note = document.getElementById('capnote');
-  var btns = Array.prototype.slice.call(document.querySelectorAll('#times button'));
   var captions = {
     morning: 'Утро на канале. Над водой ещё тихо.',
-    day: 'День на канале. По набережной идут, по воде плывут.',
-    evening: 'Вечер на канале. Зажгли фонари, на столиках лампы.',
-    night: 'Ночь на канале. В окнах напротив свет.',
-    white: 'Белая ночь на канале. Небо светлое почти до утра.'
+    day: 'День на канале. Светло, вода блестит.',
+    evening: 'Вечер на канале. Зажгли лампы, за окном сумерки.',
+    night: 'Ночь на канале. Тихо, горит одна лампа.'
   };
-  function whiteNights(d) { var v = (d.getMonth() + 1) * 100 + d.getDate(); return v >= 525 && v <= 717; }
   function auto(d) {
     var h = d.getHours();
     if (h >= 5 && h < 10) return 'morning';
@@ -693,25 +569,29 @@ footer a { text-underline-offset: 3px; }
     if (h >= 17 && h < 22) return 'evening';
     return 'night';
   }
-  function show(state, manual) {
-    var key = (state === 'night' && whiteNights(new Date())) ? 'white' : state;
-    if (captions[state] && !(state === 'night')) key = state;
-    scene.setAttribute('data-time', key);
-    cap.textContent = captions[key];
+  function load(img) { if (!img.getAttribute('src')) img.src = img.getAttribute('data-src'); }
+  /* how: 'clock' - по часам посетителя, 'manual' - выбрал сам */
+  function show(state, how) {
+    photos.forEach(function (im) {
+      var on = im.getAttribute('data-t') === state;
+      if (on) load(im);
+      im.classList.toggle('on', on);
+      im.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    document.body.setAttribute('data-page', state);
+    cap.textContent = captions[state];
+    cap.setAttribute('aria-live', how === 'manual' ? 'polite' : 'off');
     btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-t') === state)); });
-    note.innerHTML = manual ? 'Вы выбрали время суток. <button type="button" id="reset">Показать время на моих часах</button>' : 'Показано время на ваших часах.';
-    var r = document.getElementById('reset');
-    if (r) r.addEventListener('click', function () { show(auto(new Date()), false); });
+    if (how === 'manual') note.innerHTML = 'Вы выбрали время суток. <button type="button" id="reset">Показать время на моих часах</button>';
+    else note.textContent = 'Показано время на ваших часах.';
   }
-  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-t'), true); }); });
-  var forced = params.get('t');
-  if (forced === 'white') { scene.setAttribute('data-time', 'white'); cap.textContent = captions.white; note.textContent = ''; }
-  else if (forced && captions[forced]) show(forced, true);
-  else show(auto(new Date()), false);
-
-  var svgRoot = scene.querySelector('svg.pic');
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches && svgRoot.pauseAnimations) svgRoot.pauseAnimations();
-
+  note.addEventListener('click', function (e) { if (e.target.id === 'reset') show(auto(new Date()), 'clock'); });
+  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-t'), 'manual'); }); });
+  timesBox.hidden = false;
+  var forced = new URLSearchParams(location.search).get('t');
+  if (forced && captions[forced]) show(forced, 'manual'); else show(auto(new Date()), 'clock');
+  /* остальные фото подгружаем, когда страница уже открылась */
+  addEventListener('load', function () { setTimeout(function () { photos.forEach(load); }, 600); });
   /* ---------- Веранда: с мая по сентябрь ---------- */
   var vm = new Date().getMonth();
   if (vm < 4 || vm > 8) {
