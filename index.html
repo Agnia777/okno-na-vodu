@@ -145,6 +145,35 @@ p { margin: 0 0 14px; }
 .hero-photo { position: relative; margin: 0; aspect-ratio: 1 / 1.05; border: 12px solid var(--iron); border-radius: 50% 50% 0 0 / 30% 30% 0 0; overflow: hidden; background: var(--water); box-shadow: 0 18px 40px rgba(30,38,40,.22); }
 .hero-photo .ph { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
 .hero-photo .ph.on { opacity: 1; }
+/* Оживление фото: пар над чашкой и свет лампы. Слой на каждое время суток, видим только текущий.
+   Координаты - в процентах окна: --cx/--cy откуда идёт пар, --lx/--ly/--lw где светит лампа. */
+.fx { position: absolute; inset: 0; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 1.4s ease; }
+.fx.on { opacity: 1; }
+.fx:not(.on) i { animation-play-state: paused; }
+.fx[data-t="morning"] { --cx: 70.3%; --cy: 66.4%; --lx: 90.8%; --ly: 47.9%; --lw: 30%; --go: .50; --so: .38; --lo: .86; }
+.fx[data-t="day"]     { --cx: 57.3%; --cy: 48.7%; --lx: 90.5%; --ly: 23%;   --lw: 24%; --go: .22; --so: .18; --lo: .86; }
+.fx[data-t="evening"] { --cx: 68.1%; --cy: 64.5%; --lx: 94.9%; --ly: 42%;   --lw: 34%; --go: .52; --so: .38; --lo: .86; }
+.fx[data-t="night"]   { --cx: 60.5%; --cy: 63.5%; --lx: 83.4%; --ly: 48.8%; --lw: 26%; --go: .80; --so: .42; --lo: .70; }
+.fx .steam { position: absolute; left: var(--cx); bottom: calc(100% - var(--cy)); width: 9%; height: 17%; margin-left: -4.5%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0)); filter: blur(5px); transform-origin: 50% 100%; opacity: 0; animation: steam 7.5s ease-in-out infinite; }
+.fx .steam.s2 { margin-left: -6.5%; animation-delay: 2.5s; animation-duration: 8.2s; --sway: -9%; }
+.fx .steam.s3 { margin-left: -2.5%; animation-delay: 5s; animation-duration: 7s; --sway: 11%; }
+@keyframes steam {
+  0%   { opacity: 0; transform: translate(0, 12%) scale(.6, .8); }
+  22%  { opacity: var(--so); }
+  70%  { opacity: calc(var(--so) * .55); }
+  100% { opacity: 0; transform: translate(var(--sway, 7%), -150%) scale(1.3, 1.7); }
+}
+.fx .glow { position: absolute; left: var(--lx); top: var(--ly); width: var(--lw); aspect-ratio: 1; margin: calc(var(--lw) / -2) 0 0 calc(var(--lw) / -2); border-radius: 50%; background: radial-gradient(closest-side, rgba(255,206,122,.62), rgba(255,190,100,.2) 55%, rgba(255,190,100,0)); mix-blend-mode: screen; opacity: var(--go); animation: flick 6s linear infinite; }
+@keyframes flick {
+  0%   { opacity: calc(var(--go) * var(--lo)); }
+  9%   { opacity: var(--go); }
+  15%  { opacity: calc(var(--go) * (var(--lo) - .04)); }
+  32%  { opacity: calc(var(--go) * .96); }
+  48%  { opacity: calc(var(--go) * var(--lo)); }
+  63%  { opacity: var(--go); }
+  81%  { opacity: calc(var(--go) * (var(--lo) + .03)); }
+  100% { opacity: calc(var(--go) * var(--lo)); }
+}
 .times { position: absolute; left: 12px; right: 12px; bottom: 14px; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0; padding: 0; border: 0; }
 .times[hidden] { display: none; }
 .times button { min-height: 44px; padding: 0 16px; border: 2px solid var(--iron); border-radius: 4px; background: rgba(248,246,250,.92); color: var(--iron); font: 600 16px/1 var(--body); cursor: pointer; transition: background-color .2s, color .2s; }
@@ -287,7 +316,8 @@ footer a { text-underline-offset: 3px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero-photo .ph, .pagebg i, .list .th { transition: none; }
+  .hero-photo .ph, .pagebg i, .list .th, .fx { transition: none; }
+  .fx .steam, .fx .glow { animation: none; }
 }
 </style>
 </head>
@@ -334,6 +364,10 @@ footer a { text-underline-offset: 3px; }
           <img class="ph" data-t="evening" data-src="img/okno-vecher.webp" width="1024" height="1024" aria-hidden="true" alt="Столик у окна на закате: чашка кофе, лампа и сухоцветы на круглом столе, плед на стуле, за стеклом канал с отражением розового неба, мост и зажжённые фонари">
           <img class="ph" data-t="night" data-src="img/stolik-u-okna.webp" width="1024" height="1024" aria-hidden="true" alt="Круглый деревянный столик у окна ночью: чашка кофе, лампа с тёплым светом, на стуле клетчатый плед, за стеклом тёмный канал">
           <noscript><img class="ph on" style="opacity:1" src="img/okno-den.jpg" width="724" height="764" alt="Столик у окна в солнечный день: чашка капучино, лампа, плед на стуле, за стеклом канал"></noscript>
+          <div class="fx" data-t="morning" aria-hidden="true"><i class="steam s1"></i><i class="steam s2"></i><i class="steam s3"></i><i class="glow"></i></div>
+          <div class="fx" data-t="day" aria-hidden="true"><i class="steam s1"></i><i class="steam s2"></i><i class="steam s3"></i><i class="glow"></i></div>
+          <div class="fx" data-t="evening" aria-hidden="true"><i class="steam s1"></i><i class="steam s2"></i><i class="steam s3"></i><i class="glow"></i></div>
+          <div class="fx" data-t="night" aria-hidden="true"><i class="steam s1"></i><i class="steam s2"></i><i class="steam s3"></i><i class="glow"></i></div>
           <fieldset class="times" id="times" aria-label="Время суток за окном" hidden>
             <button type="button" data-t="morning" aria-pressed="false">Утро</button>
             <button type="button" data-t="day" aria-pressed="false">День</button>
@@ -550,6 +584,7 @@ footer a { text-underline-offset: 3px; }
 (function () {
   /* ---------- Время суток за окном: фото и фон меняются вместе ---------- */
   var photos = Array.prototype.slice.call(document.querySelectorAll('#heroph .ph'));
+  var fxs = Array.prototype.slice.call(document.querySelectorAll('#heroph .fx'));
   var timesBox = document.getElementById('times');
   var btns = Array.prototype.slice.call(timesBox.querySelectorAll('button'));
   var cap = document.getElementById('cap');
@@ -576,6 +611,7 @@ footer a { text-underline-offset: 3px; }
       im.classList.toggle('on', on);
       im.setAttribute('aria-hidden', on ? 'false' : 'true');
     });
+    fxs.forEach(function (f) { f.classList.toggle('on', f.getAttribute('data-t') === state); });
     document.body.setAttribute('data-page', state);
     cap.textContent = captions[state];
     cap.setAttribute('aria-live', how === 'manual' ? 'polite' : 'off');
